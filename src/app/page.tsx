@@ -126,7 +126,7 @@ export default function Home() {
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/5] sm:aspect-[5/6] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.35)] bg-white/5 rounded-3xl border border-white/10">
           <Image
-                src="/cj_fullbody.jpg" 
+                src="/cj-fullbody.png" 
                 alt="CJ at work" 
                 fill
                 className="object-cover filter grayscale saturate-75 contrast-110" 
