@@ -32,10 +32,34 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# secrets and config files
+config.json
+secrets.json
+.secrets
 
 # vercel
 .vercel
 
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# logs
+logs
+*.log
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# mac specific
+.DS_Store
+.AppleDouble
+.LSOverride

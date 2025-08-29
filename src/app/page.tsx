@@ -1,103 +1,368 @@
+'use client';
+
 import Image from "next/image";
+import { useEffect } from "react";
+import Footer from "@/components/Footer";
+import Navigation from "@/components/Navigation";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
+  useEffect(() => {
+    // Load UnicornStudio animation script
+    if (typeof window !== 'undefined') {
+      const initializeAnimation = () => {
+        if (window.UnicornStudio) {
+          // Add a small delay to ensure DOM is ready and previous animations are cleaned up
+          setTimeout(() => {
+            try {
+              window.UnicornStudio?.init();
+            } catch (error) {
+              console.warn('UnicornStudio initialization error:', error);
+            }
+          }, 100);
+        }
+      };
+
+      if (!window.UnicornStudio) {
+        // Load script if not already loaded
+        const script = document.createElement("script");
+        script.src = "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js";
+        script.onload = initializeAnimation;
+        (document.head || document.body).appendChild(script);
+      } else {
+        // Script already loaded, just initialize
+        initializeAnimation();
+      }
+    }
+  }, []);
+
+  return (
+    <div className="min-h-screen">
+      {/* Background Animation */}
+      <div className="aura-background-component top-0 w-full -z-10 absolute h-[815px]">
+        <div data-us-project="cqcLtDwfoHqqRPttBbQE" className="absolute top-0 left-0 -z-10 w-full h-full"></div>
+      </div>
+
+            {/* Navigation */}
+      <Navigation currentPage="home" />
+
+      {/* Hero Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 mt-10 sm:mt-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-7">
+            <h1 className="leading-none text-white tracking-tight">
+              <span className="block text-[12vw] sm:text-[10vw] md:text-[10vw] lg:text-[6vw] xl:text-[4vw] 2xl:text-[3vw] 3xl:text-[2.5vw] 4xl:text-[2vw] max-w-4xl font-semibold">
+                <span className="tracking-tighter">Charles J.</span>
+                <span className="block"></span>
+                <span className="tracking-tighter">(CJ) Dyas</span>
+              </span>
+            </h1>
+            <p className="sm:mt-5 sm:text-3xl leading-relaxed max-w-2xl text-base text-white/70 tracking-tight mt-4">
+              Product & UI/UX Designer with 4+ years of experience focusing on UX, web design, and design systems to create user-centered products that serve over 2 million users annually.
+            </p>
+
+            <div className="mt-6 flex flex-col sm:flex-row gap-3">
+              <a href="/blog" className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium tracking-tight text-neutral-900 bg-white hover:bg-white/90 border border-white/10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+                <span>View Blog</span>
+              </a>
+              <a href="mailto:dyascj@gmail.com" className="inline-flex items-center justify-center gap-2 hover:bg-white/15 text-sm font-medium text-white tracking-tight bg-white/10 border-white/10 border rounded-full pt-3 pr-5 pb-3 pl-5 shadow-sm backdrop-blur">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                  <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
+                  <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                </svg>
+                <span>dyascj@gmail.com</span>
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="flex items-start gap-3 border-t border-white/10 pt-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px] text-white/50 mt-0.5">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <div>
+                  <p className="text-sm font-medium tracking-tight">Based in Cincinnati, OH</p>
+                  <p className="text-xs text-white/60 mt-0.5">Open to remote work</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 border-t border-white/10 pt-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px] text-white/50 mt-0.5">
+                  <path d="M12 20v2"></path>
+                  <path d="M12 2v2"></path>
+                  <path d="M17 20v2"></path>
+                  <path d="M17 2v2"></path>
+                  <path d="M2 12h2"></path>
+                  <path d="M2 17h2"></path>
+                  <path d="M2 7h2"></path>
+                  <path d="M20 12h2"></path>
+                  <path d="M20 17h2"></path>
+                  <path d="M20 7h2"></path>
+                  <path d="M7 20v2"></path>
+                  <path d="M7 2v2"></path>
+                  <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                  <rect x="8" y="8" width="8" height="8" rx="1"></rect>
+                </svg>
+                <div>
+                  <p className="text-sm font-medium tracking-tight">Product Design + Mapping</p>
+                  <p className="text-xs text-white/60 mt-0.5">Design systems, web apps, cartography</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 border-t border-white/10 pt-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px] text-white/50 mt-0.5">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+                <div>
+                  <p className="text-sm font-medium tracking-tight">Currently available</p>
+                  <p className="text-xs text-white/60 mt-0.5">Contract work and Freelance Gigs</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5">
+            <div className="relative aspect-[4/5] sm:aspect-[5/6] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.35)] bg-white/5 rounded-3xl border border-white/10">
           <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+                src="/cj_fullbody.jpg" 
+                alt="CJ at work" 
+                fill
+                className="object-cover filter grayscale saturate-75 contrast-110" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+
+              <div className="absolute bottom-4 left-4 right-4 grid grid-cols-3 gap-3">
+                <div className="rounded-xl bg-white/10 backdrop-blur-md border border-white/15 p-3 shadow-lg">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-2 h-2 rounded-full bg-white/50"></div>
+                    <div className="text-lg font-semibold tracking-tight text-white">20+</div>
+                  </div>
+                  <p className="text-[11px] text-white/70">Projects</p>
+                </div>
+                <div className="rounded-xl bg-white/10 backdrop-blur-md border border-white/15 p-3 shadow-lg">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-2 h-2 rounded-full bg-white/50"></div>
+                    <div className="text-lg font-semibold tracking-tight text-white">4+</div>
+                  </div>
+                  <p className="text-[11px] text-white/70">Years of Experience</p>
+                </div>
+                <div className="rounded-xl bg-white/10 backdrop-blur-md border border-white/15 p-3 shadow-lg">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-2 h-2 rounded-full bg-white/50"></div>
+                    <div className="text-lg font-semibold tracking-tight text-white">2m+</div>
+                  </div>
+                  <p className="text-[11px] text-white/70">Users Served</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Company Logos Section */}
+      <section className="max-w-7xl sm:px-6 sm:mt-24 mt-16 mr-auto mb-16 ml-auto pt-10 pr-4 pl-4">
+        <div className="relative overflow-hidden sm:p-8 text-white bg-neutral-950 border-white/10 border rounded-3xl pt-6 pr-6 pb-6 pl-6">
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute inset-0 bg-[radial-gradient(1200px_600px_at_20%_-20%,rgba(255,255,255,0.07),transparent_60%)]"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(1200px_600px_at_80%_120%,rgba(255,255,255,0.06),transparent_60%)]"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(#ffffff0d_1px,transparent_1px)] [background-size:20px_20px] opacity-[0.15]"></div>
+          </div>
+
+          <div className="relative">
+            <section id="work" className="relative z-10 pt-16 pb-16">
+              <div className="max-w-6xl sm:px-6 lg:px-8 mr-auto ml-auto pr-4 pl-4">
+                <div className="text-center space-y-12">
+                  <div className="space-y-4">
+                    <h2 className="sm:text-4xl text-3xl font-normal text-white tracking-tight">Trusted by leading companies</h2>
+                    <p className="text-lg text-white/70 max-w-2xl mx-auto">At previous companies, I&apos;ve worked with some of the most iconic brands locally and nationally.</p>
+                    
+                    <div className="mt-8 pt-8 pr-6 pb-6 pl-6">
+                      <div className="text-center">
+                        <p className="uppercase text-sm font-medium text-zinc-400 tracking-wide">Brands I&apos;ve worked with</p> 
+                      </div>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 mt-8">
+                        <div className="col-span-2 sm:col-span-1 flex justify-center">
+                          <Image src="/Disney_Logo.svg" alt="Disney Logo" width={100} height={44} className="w-auto h-11 filter brightness-0 invert" />
+                        </div>
+                        <div className="col-span-2 sm:col-span-1 flex justify-center">
+                          <Image src="/SDPadres_logo.svg" alt="San Diego Padres Logo" width={100} height={44} className="w-auto h-11 filter brightness-0 invert" />
+                        </div>
+                        <div className="col-span-2 sm:col-span-1 flex justify-center">
+                          <Image src="/MDD_logo.svg" alt="Miami Design District Logo" width={100} height={44} className="w-auto h-11 filter brightness-0 invert" />
+                        </div>
+                        <div className="col-span-2 sm:col-span-1 flex justify-center">
+                          <Image src="/uch-logo.svg" alt="UCH Logo" width={100} height={36} className="w-auto h-9 filter brightness-0 invert" />
+                        </div>
+                        <div className="col-span-2 sm:col-span-1 flex justify-center">
+                          <Image src="/riverfront_logo.svg" alt="Riverfront Logo" width={100} height={36} className="w-auto h-9 filter brightness-0 invert" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="max-w-7xl mx-auto px-4 sm:px-6 mt-16 sm:mt-20 pt-10 border-t border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          <div className="md:col-span-5">
+            <div className="relative aspect-[16/12] md:aspect-[4/5] rounded-3xl overflow-hidden border border-white/20 bg-white/5 shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
           <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+                src="/cj-headshot.png" 
+                alt="Workspace" 
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-black/10 via-transparent to-transparent"></div>
+            </div>
+          </div>
+          <div className="md:col-span-7 md:pl-8 md:border-l md:border-white/10">
+            <h2 className="text-2xl sm:text-3xl tracking-tight text-white">About</h2>
+            <p className="mt-3 text-sm sm:text-base leading-relaxed text-white/70">
+              My background in UI/UX design and GIS cartography allows me to bring structure to complexity—designing large-scale touch interfaces, responsive web tools, and interactive maps that prioritize clarity, accessibility, and performance. I work across the entire product lifecycle, from early research and prototyping to polished, production-ready design.
+            </p>
+
+            <p className="mt-4 text-sm sm:text-base leading-relaxed text-white/70">
+              I take a data-driven approach to design—leveraging usage analytics, user feedback, and real-world testing to measure the impact of my work and iterate intentionally. Whether refining the flow of a multi-step form or optimizing a touchscreen for public use, I focus on designing experiences that are intuitive, efficient, and human-centered.
+            </p>
+
+            <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6">
+              <div className="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-white/80">
+                  <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  <rect width="20" height="14" x="2" y="6" rx="2"></rect>
+                </svg>
+                <h3 className="text-xl font-semibold tracking-tight">Experience</h3>
+              </div>
+              <ul className="mt-3 space-y-3">
+                <li className="flex items-start gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-white/70 mt-0.5">
+                    <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
+                    <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
+                    <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
+                    <path d="M10 6h4"></path>
+                    <path d="M10 10h4"></path>
+                    <path d="M10 14h4"></path>
+                    <path d="M10 18h4"></path>
+                  </svg>
+                  <div>
+                    <p className="text-sm font-medium tracking-tight">Director of Design & Service • RoveiQ</p>
+                    <p className="text-xs text-white/60">Feb 2025 — Present · Led design & Product</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-white/70 mt-0.5">
+                    <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
+                    <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
+                    <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
+                    <path d="M10 6h4"></path>
+                    <path d="M10 10h4"></path>
+                    <path d="M10 14h4"></path>
+                    <path d="M10 18h4"></path>
+                  </svg>
+                  <div>
+                    <p className="text-sm font-medium tracking-tight">Freelance Designer/Web Developer</p>
+                    <p className="text-xs text-white/60">2021 — Present · Web Design, Graphic Design, Branding</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-white/70 mt-0.5">
+                    <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
+                    <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
+                    <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
+                    <path d="M10 6h4"></path>
+                    <path d="M10 10h4"></path>
+                    <path d="M10 14h4"></path>
+                    <path d="M10 18h4"></path>
+                  </svg>
+                  <div>
+                    <p className="text-sm font-medium tracking-tight">Product Designer • RoveIQ</p>
+                    <p className="text-xs text-white/60">2021 — 2025 · Product Design & UI/UX Design</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+
+
+            <div className="mt-6 p-6 bg-white/5 rounded-xl border border-white/10">
+              <h3 className="text-sm font-medium tracking-tight text-white mb-2">Currently Learning</h3>
+              <p className="text-sm text-white/70">Exploring AI-powered design tools and learning to build powerful sites using Next.js</p>
+            </div>
+
+
+          </div>
+        </div>
+      </section>
+
+      {/* Technologies & Tools Section */}
+      <section id="tools" className="max-w-7xl sm:px-6 sm:mt-20 border-white/10 border-t mt-16 mr-auto ml-auto pt-10 pr-4 pl-4">
+        <div className="lg:col-span-2">
+          <h3 className="text-2xl sm:text-3xl tracking-tight text-white mb-6">Technologies &amp; Tools</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {/* Design Tools */}
+            <div className="bg-vercel-card border border-vercel-border rounded-lg p-4 text-center hover:border-vercel-accent transition-colors">
+              <div className="w-12 h-12 rounded-lg mx-auto mb-3 flex items-center justify-center bg-white/10 backdrop-blur-md border border-white/10 shadow-sm">
+                <img src="/icons/Figma-logo.svg" alt="Figma" className="w-7 h-7" />
+              </div>
+              <div className="text-sm font-medium text-white">Figma</div>
+            </div>
+            <div className="bg-vercel-card border border-vercel-border rounded-lg p-4 text-center hover:border-vercel-accent transition-colors">
+              <div className="w-12 h-12 rounded-lg mx-auto mb-3 flex items-center justify-center bg-white/10 backdrop-blur-md border border-white/10 shadow-sm">
+                <img src="/icons/framer-svgrepo-com.svg" alt="Framer" className="w-7 h-7" />
+              </div>
+              <div className="text-sm font-medium text-white">Framer</div>
+            </div>
+            <div className="bg-vercel-card border border-vercel-border rounded-lg p-4 text-center hover:border-vercel-accent transition-colors">
+              <div className="w-12 h-12 rounded-lg mx-auto mb-3 flex items-center justify-center bg-white/10 backdrop-blur-md border border-white/10 shadow-sm">
+                <img src="/icons/Notion-logo.svg" alt="Notion" className="w-7 h-7" />
+              </div>
+              <div className="text-sm font-medium text-white">Notion</div>
+            </div>
+            <div className="bg-vercel-card border border-vercel-border rounded-lg p-4 text-center hover:border-vercel-accent transition-colors">
+              <div className="w-12 h-12 rounded-lg mx-auto mb-3 flex items-center justify-center bg-white/10 backdrop-blur-md border border-white/10 shadow-sm">
+                <img src="/icons/QGIS_logo.svg" alt="QGIS" className="w-7 h-7" />
+              </div>
+              <div className="text-sm font-medium text-white">QGIS</div>
+            </div>
+            
+            {/* Code Technologies */}
+            <div className="bg-vercel-card border border-vercel-border rounded-lg p-4 text-center hover:border-vercel-accent transition-colors">
+              <div className="w-12 h-12 flex rounded-lg mr-auto mb-3 ml-auto items-center justify-center bg-white/10 backdrop-blur-md border border-white/10 shadow-sm">
+                <img src="/icons/React-icon.svg" alt="React" className="w-7 h-7" />
+              </div>
+              <div className="text-sm font-medium text-white">React</div>
+            </div>
+            <div className="bg-vercel-card border border-vercel-border rounded-lg p-4 text-center hover:border-vercel-accent transition-colors">
+              <div className="w-12 h-12 rounded-lg mx-auto mb-3 flex items-center justify-center bg-white/10 backdrop-blur-md border border-white/10 shadow-sm">
+                <img src="/icons/Typescript_logo.svg" alt="TypeScript" className="w-7 h-7" />
+              </div>
+              <div className="text-sm font-medium text-white">TypeScript</div>
+            </div>
+            <div className="bg-vercel-card border border-vercel-border rounded-lg p-4 text-center hover:border-vercel-accent transition-colors">
+              <div className="w-12 h-12 rounded-lg mx-auto mb-3 flex items-center justify-center bg-white/10 backdrop-blur-md border border-white/10 shadow-sm">
+                <span className="text-white font-bold">▲</span>
+              </div>
+              <div className="text-sm font-medium text-white">Next.js</div>
+            </div>
+            <div className="bg-vercel-card border border-vercel-border rounded-lg p-4 text-center hover:border-vercel-accent transition-colors">
+              <div className="w-12 h-12 rounded-lg mx-auto mb-3 flex items-center justify-center bg-white/10 backdrop-blur-md border border-white/10 shadow-sm">
+                <img src="/icons/Python-logo.svg" alt="Python" className="w-7 h-7" />
+              </div>
+              <div className="text-sm font-medium text-white">Python</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact / CTA */}
+      <Footer />
     </div>
   );
 }
