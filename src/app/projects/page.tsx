@@ -45,7 +45,7 @@ export default function ProjectsPage() {
 
         {/* Message */}
         <p className="text-lg text-white/70 mb-8 leading-relaxed">
-          I'm currently building something amazing here. Check back soon to see my latest projects and case studies.
+          I&apos;m currently building something amazing here. Check back soon to see my latest projects and case studies.
         </p>
 
         {/* Return Home Button */}
