@@ -10,8 +10,6 @@ featuredImage: "/blog/frutiger-aero/frutiger-aero-thumbnail.jpg"
 imageAlt: "Fish and birds aero wallpaper with soft gradients and glassy effects"
 ---
 
-## We Were Promised Jetpacks: The Lost Future of Frutiger Aero
-
 In the early 2000s, tech had a soul. Or at least, it felt like it did.
 
 The aesthetic of the time, retroactively dubbed Frutiger Aero, painted a hopeful, hyper-modern picture of the future. It was named after the ubiquitous typeface Frutiger and the smooth, high-gloss airiness of UI design trends in Windows XP, early Android, and various airport terminals and inflight screens. It blended clean sans-serif fonts with glassy buttons, gradients that mimicked light refracting through water, soft shadows, and nature-themed backdrops that felt almost utopian.
