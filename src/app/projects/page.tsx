@@ -1,11 +1,15 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import ProjectsPage from '@/components/ProjectsPage';
-import { getProjectsByCategory } from '@/lib/projects';
+import { getAllProjects } from '@/lib/projects';
+
+export const metadata = {
+  title: 'Projects - Charles J. (CJ) Dyas',
+  description: 'A collection of my design work, case studies, and creative projects spanning graphic design and product design.',
+};
 
 export default function ProjectsPageWrapper() {
-  const graphicDesignProjects = getProjectsByCategory('graphic-design');
-  const productDesignProjects = getProjectsByCategory('product-design');
+  const allProjects = getAllProjects();
 
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
@@ -13,10 +17,7 @@ export default function ProjectsPageWrapper() {
       <Navigation currentPage="projects" />
       
       {/* Projects Page Component */}
-      <ProjectsPage 
-        graphicDesignProjects={graphicDesignProjects}
-        productDesignProjects={productDesignProjects}
-      />
+      <ProjectsPage initialProjects={allProjects} />
 
       {/* Footer */}
       <Footer />

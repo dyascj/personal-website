@@ -2,192 +2,208 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
-import { ProjectMeta, ProjectCategory } from '@/lib/projects';
+import { useState, useMemo } from 'react';
+import { ProjectMeta } from '@/lib/projects';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface ProjectsPageProps {
-  graphicDesignProjects: ProjectMeta[];
-  productDesignProjects: ProjectMeta[];
+  initialProjects: ProjectMeta[];
+}
+
+type FilterType = 'All' | 'Product Design' | 'Web Design' | 'Graphic Design';
+
+function getCategoryLabel(category: string): string {
+  switch (category) {
+    case 'graphic-design':
+      return 'Graphic Design';
+    case 'product-design':
+      return 'Product Design';
+    case 'web-design':
+      return 'Web Design';
+    default:
+      return category;
+  }
+}
+
+function getDotColor(category: string): string {
+  switch (category) {
+    case 'graphic-design':
+      return 'bg-pink-500';
+    case 'product-design':
+      return 'bg-blue-500';
+    case 'web-design':
+      return 'bg-violet-500';
+    default:
+      return 'bg-white/50';
+  }
 }
 
 function ProjectCard({ project }: { project: ProjectMeta }) {
+  const categoryLabel = getCategoryLabel(project.category);
+  const dotColor = getDotColor(project.category);
+
   return (
-    <article className="group">
-      <Link href={`/projects/${project.category}/${project.slug}`}>
-        <div className="rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors duration-200 overflow-hidden">
-          {/* Thumbnail */}
-          {project.thumbnail ? (
-            <div className="relative aspect-video w-full">
+    <motion.article
+      layout
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.3 }}
+      className="group flex flex-col h-full"
+    >
+      <Link href={`/projects/${project.category}/${project.slug}`} className="block h-full">
+        {/* Card Container */}
+        <div className="bg-transparent h-full flex flex-col">
+          {/* Thumbnail Image */}
+          <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden bg-white/5 border border-white/10 mb-4">
+            {project.thumbnail ? (
               <Image
                 src={project.thumbnail}
                 alt={project.imageAlt || project.title}
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-            </div>
-          ) : (
-            <div className="relative aspect-video w-full bg-white/5 flex items-center justify-center">
-              <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center">
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  width="24" 
-                  height="24" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  className="text-white/60"
-                >
-                  <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            ) : (
+              <div className="flex items-center justify-center h-full text-white/20">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                  <circle cx="9" cy="9" r="2"/>
+                  <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
                 </svg>
               </div>
-            </div>
-          )}
-
-          <div className="p-6">
-            {/* Tools (replacing tags) */}
-            {project.tools && project.tools.length > 0 && (
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tools.slice(0, 2).map((tool) => (
-                  <span
-                    key={tool}
-                    className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-white/10 text-white/70"
-                  >
-                    {tool}
-                  </span>
-                ))}
-              </div>
             )}
+            
+            {/* Hover Overlay */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 flex flex-col">
+            {/* Category / Tag */}
+            <div className="flex items-center gap-2 mb-2">
+              <span className={`w-1.5 h-1.5 rounded-full ${dotColor}`}></span>
+              <span className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                {categoryLabel}
+              </span>
+            </div>
 
             {/* Title */}
-            <h2 className="text-xl font-semibold text-white group-hover:text-white/90 mb-3 line-clamp-2">
+            <h3 className="text-xl font-medium text-white mb-2 group-hover:text-white/90 transition-colors">
               {project.title}
-            </h2>
+            </h3>
 
             {/* Excerpt */}
-            <p className="text-white/60 text-sm leading-relaxed mb-4 line-clamp-3">
+            <p className="text-sm text-white/50 leading-relaxed line-clamp-2 mb-4">
               {project.excerpt}
             </p>
 
-            {/* Meta */}
-            <div className="flex items-center justify-between text-xs text-white/50">
-              <time dateTime={project.date}>
-                {new Date(project.date).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </time>
-              <span>{project.readTime}</span>
+            {/* Year */}
+            <div className="mt-auto pt-2 text-xs text-white/30">
+              {project.year || new Date(project.date).getFullYear()}
             </div>
           </div>
         </div>
       </Link>
-    </article>
+    </motion.article>
   );
 }
 
 function EmptyState() {
   return (
-    <div className="text-center py-12">
-      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/10 border border-white/20 mb-4">
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          width="24" 
-          height="24" 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          stroke="currentColor" 
-          strokeWidth="2" 
-          strokeLinecap="round" 
-          strokeLinejoin="round" 
-          className="text-white/60"
-        >
-          <path d="M12 6v12"></path>
-          <path d="M17.196 9 6.804 15"></path>
-          <path d="M6.804 9 17.196 15"></path>
+    <motion.div 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }}
+      className="col-span-full text-center py-20"
+    >
+      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/5 border border-white/10 mb-4 text-white/30">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="m15 9-6 6"/>
+          <path d="m9 9 6 6"/>
         </svg>
       </div>
-      <p className="text-white/70 text-lg">Projects being added soon</p>
-    </div>
+      <p className="text-white/50">No projects found for this category.</p>
+    </motion.div>
   );
 }
 
-export default function ProjectsPage({ graphicDesignProjects, productDesignProjects }: ProjectsPageProps) {
-  const [activeCategory, setActiveCategory] = useState<ProjectCategory>('graphic-design');
+export default function ProjectsPage({ initialProjects }: ProjectsPageProps) {
+  const [activeFilter, setActiveFilter] = useState<FilterType>('All');
 
-  const currentProjects = activeCategory === 'graphic-design' 
-    ? graphicDesignProjects 
-    : productDesignProjects;
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === 'All') return initialProjects;
 
-  const currentCategoryLabel = activeCategory === 'graphic-design' 
-    ? 'Graphic Design' 
-    : 'Product Design';
+    return initialProjects.filter((project) => {
+      if (activeFilter === 'Graphic Design') return project.category === 'graphic-design';
+      if (activeFilter === 'Product Design') return project.category === 'product-design';
+      if (activeFilter === 'Web Design') return project.category === 'web-design';
+      return true;
+    });
+  }, [activeFilter, initialProjects]);
+
+  const filters: FilterType[] = ['All', 'Product Design', 'Web Design', 'Graphic Design'];
 
   return (
-    <>
-      {/* Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-8">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
+    <div className="max-w-[1400px] mx-auto px-4 sm:px-6 pt-24 pb-20">
+      {/* Hero Section */}
+      <div className="text-center max-w-4xl mx-auto mb-20">
+         <div className="flex items-center justify-center gap-2 mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+            <span className="text-xs font-medium text-white/50 uppercase tracking-[0.2em]">Portfolio</span>
+         </div>
+         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
             Projects
-          </h1>
-          <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed mb-8">
-            A collection of my design work, case studies, and creative projects spanning graphic design and product design.
-          </p>
+         </h1>
+         <p className="text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+            A curated selection of work spanning from freelance graphic & web design to professional product design experience.
+         </p>
+      </div>
 
-          {/* Category Toggle */}
-          <div className="inline-flex items-center bg-white/5 border border-white/10 rounded-full p-1">
-            <button
-              onClick={() => setActiveCategory('graphic-design')}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                activeCategory === 'graphic-design'
-                  ? 'bg-white text-neutral-900'
-                  : 'text-white/70 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              Graphic Design
-            </button>
-            <button
-              onClick={() => setActiveCategory('product-design')}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                activeCategory === 'product-design'
-                  ? 'bg-white text-neutral-900'
-                  : 'text-white/70 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              Product Design
-            </button>
-          </div>
-        </div>
-
-        {/* Projects Grid */}
-        <section>
-          <div className="flex items-center gap-4 mb-8">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-              {currentCategoryLabel}
-            </h2>
-            <div className="flex-1 h-px bg-white/20"></div>
-            <span className="text-white/60 text-sm">
-              {currentProjects.length} {currentProjects.length === 1 ? 'project' : 'projects'}
-            </span>
-          </div>
-          
-          {currentProjects.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {currentProjects.map((project) => (
-                <ProjectCard key={project.slug} project={project} />
+      {/* Header & Filters */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 border-b border-white/10 pb-6">
+        <div className="relative flex-1 min-w-0">
+          <div className="flex items-center gap-4 overflow-x-auto pb-2 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide">
+            <span className="text-sm font-medium text-white/50 whitespace-nowrap sticky left-0 bg-neutral-950 z-10 pr-4 md:static md:bg-transparent md:pr-0">Filter:</span>
+            <div className="flex gap-2 pr-4 md:pr-0">
+              {filters.map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setActiveFilter(filter)}
+                  className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                    activeFilter === filter
+                      ? 'bg-white text-neutral-950'
+                      : 'text-white/60 hover:text-white hover:bg-white/10'
+                  }`}
+                >
+                  {filter}
+                </button>
               ))}
             </div>
+          </div>
+          {/* Fade mask for mobile scrolling */}
+          <div className="absolute right-0 top-0 bottom-2 w-8 bg-gradient-to-l from-neutral-950 to-transparent pointer-events-none md:hidden"></div>
+        </div>
+        
+        <div className="text-sm text-white/40 font-mono hidden md:block flex-shrink-0">
+          [{filteredProjects.length} works]
+        </div>
+      </div>
+
+      {/* Projects Grid */}
+      <motion.div 
+        layout
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
+      >
+        <AnimatePresence mode="popLayout">
+          {filteredProjects.length > 0 ? (
+            filteredProjects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
+            ))
           ) : (
             <EmptyState />
           )}
-        </section>
-      </div>
-    </>
+        </AnimatePresence>
+      </motion.div>
+    </div>
   );
 }

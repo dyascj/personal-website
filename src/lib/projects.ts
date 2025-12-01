@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
 
-export type ProjectCategory = 'graphic-design' | 'product-design';
+export type ProjectCategory = 'graphic-design' | 'product-design' | 'web-design';
 
 const projectsDirectory = path.join(process.cwd(), 'content/projects');
 
@@ -41,6 +41,25 @@ export interface ProjectMeta {
   year?: string;
   tools?: string[];
   link?: string;
+}
+
+export function getAllProjects(): ProjectMeta[] {
+  const categories: ProjectCategory[] = ['graphic-design', 'product-design', 'web-design'];
+  let allProjects: ProjectMeta[] = [];
+
+  categories.forEach((category) => {
+    const categoryProjects = getProjectsByCategory(category);
+    allProjects = [...allProjects, ...categoryProjects];
+  });
+
+  // Sort all projects by date (newest first)
+  return allProjects.sort((a, b) => {
+    if (a.date < b.date) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
 }
 
 export function getProjectsByCategory(category: ProjectCategory): ProjectMeta[] {
