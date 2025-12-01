@@ -15,6 +15,7 @@ interface ProjectPageProps {
 export async function generateStaticParams() {
   const graphicDesignSlugs = getAllProjectSlugs('graphic-design');
   const productDesignSlugs = getAllProjectSlugs('product-design');
+  const webDesignSlugs = getAllProjectSlugs('web-design');
   
   return [
     ...graphicDesignSlugs.map(({ params }) => ({
@@ -23,6 +24,10 @@ export async function generateStaticParams() {
     })),
     ...productDesignSlugs.map(({ params }) => ({
       category: 'product-design',
+      slug: params.slug,
+    })),
+    ...webDesignSlugs.map(({ params }) => ({
+      category: 'web-design',
       slug: params.slug,
     })),
   ];
@@ -61,6 +66,19 @@ export async function generateMetadata({ params }: ProjectPageProps) {
     return {
       title: 'Project Not Found - Charles J. (CJ) Dyas',
     };
+  }
+}
+
+function getCategoryLabel(category: ProjectCategory): string {
+  switch (category) {
+    case 'graphic-design':
+      return 'Graphic Design';
+    case 'product-design':
+      return 'Product Design';
+    case 'web-design':
+      return 'Web Design';
+    default:
+      return category;
   }
 }
 
@@ -107,7 +125,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           {/* Category and Tools */}
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-white/70">
-              {project.category === 'graphic-design' ? 'Graphic Design' : 'Product Design'}
+              {getCategoryLabel(project.category)}
             </span>
             {project.tools && project.tools.length > 0 && (
               <>
