@@ -333,6 +333,43 @@ export default function Home() {
               </ul>
             </div>
 
+            <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-6">
+              <div className="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-white/80">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+                <h3 className="text-xl font-semibold tracking-tight">Patents</h3>
+              </div>
+              <ul className="mt-3 space-y-3">
+                <li className="flex items-start gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-white/70 mt-0.5 flex-shrink-0">
+                    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/>
+                    <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
+                    <path d="M10 9H8"/>
+                    <path d="M16 13H8"/>
+                    <path d="M16 17H8"/>
+                  </svg>
+                  <div>
+                    <a 
+                      href="https://patents.google.com/patent/US20250224254A1/en?inventor=CJ+Dyas&oq=inventor:(CJ+Dyas)"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group"
+                    >
+                      <p className="text-sm font-medium tracking-tight group-hover:text-blue-400 transition-colors inline-flex items-center gap-1">
+                        Methods and systems for kiosk-assisted mapping
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
+                          <path d="M7 17L17 7"/>
+                          <path d="M7 7h10v10"/>
+                        </svg>
+                      </p>
+                      <p className="text-xs text-white/60 mt-0.5">US20250224254A1 • Pending</p>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
             <div className="mt-6 p-6 bg-white/5 rounded-xl border border-white/10">
               <h3 className="text-sm font-medium tracking-tight text-white mb-2">Currently Learning</h3>
               <p className="text-sm text-white/70">Exploring AI-powered design tools and learning to build powerful sites using Next.js</p>
