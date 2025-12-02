@@ -38,6 +38,20 @@ function getDotColor(category: string): string {
   }
 }
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut" }
+  },
+  exit: { 
+    opacity: 0, 
+    scale: 0.95, 
+    transition: { duration: 0.2 } 
+  }
+};
+
 function ProjectCard({ project }: { project: ProjectMeta }) {
   const categoryLabel = getCategoryLabel(project.category);
   const dotColor = getDotColor(project.category);
@@ -45,10 +59,10 @@ function ProjectCard({ project }: { project: ProjectMeta }) {
   return (
     <motion.article
       layout
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.3 }}
+      variants={cardVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
       className="group flex flex-col h-full"
     >
       <Link href={`/projects/${project.category}/${project.slug}`} className="block h-full">
@@ -113,6 +127,7 @@ function EmptyState() {
     <motion.div 
       initial={{ opacity: 0 }} 
       animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       className="col-span-full text-center py-20"
     >
       <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/5 border border-white/10 mb-4 text-white/30">
@@ -146,7 +161,12 @@ export default function ProjectsPage({ initialProjects }: ProjectsPageProps) {
   return (
     <div className="max-w-[1400px] mx-auto px-4 sm:px-6 pt-24 pb-20">
       {/* Hero Section */}
-      <div className="text-center max-w-4xl mx-auto mb-20">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="text-center max-w-4xl mx-auto mb-20"
+      >
          <div className="flex items-center justify-center gap-2 mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
             <span className="text-xs font-medium text-white/50 uppercase tracking-[0.2em]">Portfolio</span>
@@ -157,10 +177,15 @@ export default function ProjectsPage({ initialProjects }: ProjectsPageProps) {
          <p className="text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
             A curated selection of work spanning from freelance graphic & web design to professional product design experience.
          </p>
-      </div>
+      </motion.div>
 
       {/* Header & Filters */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 border-b border-white/10 pb-6">
+      <motion.div 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 border-b border-white/10 pb-6"
+      >
         <div className="relative flex-1 min-w-0">
           <div className="flex items-center gap-4 overflow-x-auto pb-2 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide">
             <span className="text-sm font-medium text-white/50 whitespace-nowrap sticky left-0 bg-neutral-950 z-10 pr-4 md:static md:bg-transparent md:pr-0">Filter:</span>
@@ -187,7 +212,7 @@ export default function ProjectsPage({ initialProjects }: ProjectsPageProps) {
         <div className="text-sm text-white/40 font-mono hidden md:block flex-shrink-0">
           [{filteredProjects.length} works]
         </div>
-      </div>
+      </motion.div>
 
       {/* Projects Grid */}
       <motion.div 
