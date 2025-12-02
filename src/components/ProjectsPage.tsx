@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useMemo } from 'react';
 import { ProjectMeta } from '@/lib/projects';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 
 interface ProjectsPageProps {
   initialProjects: ProjectMeta[];
@@ -38,7 +38,7 @@ function getDotColor(category: string): string {
   }
 }
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
