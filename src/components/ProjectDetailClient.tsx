@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Project } from '@/lib/projects';
 
 interface ProjectDetailClientProps {
@@ -11,7 +11,7 @@ interface ProjectDetailClientProps {
   formattedDate: string;
 }
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -22,7 +22,7 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
@@ -196,4 +196,3 @@ export default function ProjectDetailClient({ project, categoryLabel, formattedD
     </>
   );
 }
-

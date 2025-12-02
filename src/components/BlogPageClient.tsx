@@ -3,13 +3,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { BlogPostMeta } from '@/lib/blog';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 interface BlogPageClientProps {
   posts: BlogPostMeta[];
 }
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
@@ -129,4 +129,3 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
     </div>
   );
 }
-
