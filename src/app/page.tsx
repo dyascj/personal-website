@@ -4,6 +4,27 @@ import Image from "next/image";
 import { useEffect } from "react";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
+import { motion } from "framer-motion";
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
 
 export default function Home() {
 
@@ -39,29 +60,39 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Background Animation */}
-      <div className="aura-background-component top-0 w-full -z-10 absolute h-[815px]">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5, ease: "easeInOut" }}
+        className="aura-background-component top-0 w-full -z-10 absolute h-[815px]"
+      >
         <div data-us-project="cqcLtDwfoHqqRPttBbQE" className="absolute top-0 left-0 -z-10 w-full h-full"></div>
-      </div>
+      </motion.div>
 
-            {/* Navigation */}
+      {/* Navigation */}
       <Navigation currentPage="home" />
 
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 mt-10 sm:mt-16">
+      <motion.section 
+        initial="hidden"
+        animate="visible"
+        variants={staggerContainer}
+        className="max-w-7xl mx-auto px-4 sm:px-6 mt-10 sm:mt-16"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7">
-            <h1 className="leading-none text-white tracking-tight">
+            <motion.h1 variants={fadeInUp} className="leading-none text-white tracking-tight">
               <span className="block text-[12vw] sm:text-[10vw] md:text-[10vw] lg:text-[6vw] xl:text-[4vw] 2xl:text-[3vw] 3xl:text-[2.5vw] 4xl:text-[2vw] max-w-4xl font-semibold">
                 <span className="tracking-tighter">Charles J.</span>
                 <span className="block"></span>
                 <span className="tracking-tighter">(CJ) Dyas</span>
               </span>
-            </h1>
-            <p className="sm:mt-5 sm:text-3xl leading-relaxed max-w-2xl text-base text-white/70 tracking-tight mt-4">
+            </motion.h1>
+            <motion.p variants={fadeInUp} className="sm:mt-5 sm:text-3xl leading-relaxed max-w-2xl text-base text-white/70 tracking-tight mt-4">
               Product & UI/UX Designer with 4+ years of experience focusing on UX, web design, and design systems to create user-centered products that serve over 2 million users annually.
-            </p>
+            </motion.p>
 
-            <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <motion.div variants={fadeInUp} className="mt-6 flex flex-col sm:flex-row gap-3">
               <a href="/blog" className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium tracking-tight text-neutral-900 bg-white hover:bg-white/90 border border-white/10">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                   <path d="M5 12h14"></path>
@@ -75,10 +106,10 @@ export default function Home() {
                   <rect x="2" y="4" width="20" height="16" rx="2"></rect>
                 </svg>
                 <span>dyascj@gmail.com</span>
-          </a>
-        </div>
+              </a>
+            </motion.div>
 
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <motion.div variants={fadeInUp} className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="flex items-start gap-3 border-t border-white/10 pt-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px] text-white/50 mt-0.5">
                   <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
@@ -120,12 +151,12 @@ export default function Home() {
                   <p className="text-xs text-white/60 mt-0.5">Contract work and Freelance Gigs</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
 
-          <div className="lg:col-span-5">
+          <motion.div variants={fadeInUp} className="lg:col-span-5">
             <div className="relative aspect-[4/5] sm:aspect-[5/6] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.35)] bg-white/5 rounded-3xl border border-white/10">
-          <Image
+              <Image
                 src="/cj-fullbody.png" 
                 alt="CJ at work" 
                 fill
@@ -157,12 +188,18 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
       
       {/* Company Logos Section */}
-      <section className="max-w-7xl sm:px-6 sm:mt-24 mt-16 mr-auto mb-16 ml-auto pt-10 pr-4 pl-4">
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUp}
+        className="max-w-7xl sm:px-6 sm:mt-24 mt-16 mr-auto mb-16 ml-auto pt-10 pr-4 pl-4"
+      >
         <div className="relative overflow-hidden sm:p-8 text-white bg-neutral-950 border-white/10 border rounded-3xl pt-6 pr-6 pb-6 pl-6">
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute inset-0 bg-[radial-gradient(1200px_600px_at_20%_-20%,rgba(255,255,255,0.07),transparent_60%)]"></div>
@@ -206,14 +243,21 @@ export default function Home() {
             </section>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* About Section */}
-      <section id="about" className="max-w-7xl mx-auto px-4 sm:px-6 mt-16 sm:mt-20 pt-10 border-t border-white/10">
+      <motion.section 
+        id="about"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUp}
+        className="max-w-7xl mx-auto px-4 sm:px-6 mt-16 sm:mt-20 pt-10 border-t border-white/10"
+      >
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           <div className="md:col-span-5">
             <div className="relative aspect-[16/12] md:aspect-[4/5] rounded-3xl overflow-hidden border border-white/20 bg-white/5 shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
-          <Image
+              <Image
                 src="/cj-headshot.png" 
                 alt="Workspace" 
                 fill
@@ -289,20 +333,23 @@ export default function Home() {
               </ul>
             </div>
 
-
-
             <div className="mt-6 p-6 bg-white/5 rounded-xl border border-white/10">
               <h3 className="text-sm font-medium tracking-tight text-white mb-2">Currently Learning</h3>
               <p className="text-sm text-white/70">Exploring AI-powered design tools and learning to build powerful sites using Next.js</p>
             </div>
-
-
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Technologies & Tools Section */}
-      <section id="tools" className="max-w-7xl sm:px-6 sm:mt-20 border-white/10 border-t mt-16 mr-auto ml-auto pt-10 pr-4 pl-4">
+      <motion.section 
+        id="tools"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUp}
+        className="max-w-7xl sm:px-6 sm:mt-20 border-white/10 border-t mt-16 mr-auto ml-auto pt-10 pr-4 pl-4"
+      >
         <div className="lg:col-span-2">
           <h3 className="text-2xl sm:text-3xl tracking-tight text-white mb-6">Technologies &amp; Tools</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -359,7 +406,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Contact / CTA */}
       <Footer />

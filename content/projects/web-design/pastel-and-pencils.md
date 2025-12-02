@@ -10,7 +10,7 @@ imageAlt: "Pastel & Pencils catalog homepage showing custom apparel designs"
 client: "Pastel & Pencils"
 year: "2025"
 tools: ["React", "Next.js", "Tailwind CSS", "Figma"]
-link: "#" 
+link: "https://www.pastelandpencils.com/" 
 ---
 
 Pastel & Pencils is a clothing and accessories brand dedicated to creating custom designs centered around Faith, Careers, and Holidays. I was approached to build a custom web application that would serve as a digital catalog for their growing collection of designs.
