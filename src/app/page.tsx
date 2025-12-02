@@ -370,10 +370,6 @@ export default function Home() {
               </ul>
             </div>
 
-            <div className="mt-6 p-6 bg-white/5 rounded-xl border border-white/10">
-              <h3 className="text-sm font-medium tracking-tight text-white mb-2">Currently Learning</h3>
-              <p className="text-sm text-white/70">Exploring AI-powered design tools and learning to build powerful sites using Next.js</p>
-            </div>
           </div>
         </div>
       </motion.section>
