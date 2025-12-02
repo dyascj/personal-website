@@ -40,7 +40,7 @@ function BlogPostCard({ post, index }: { post: BlogPostMeta; index: number }) {
       <Link href={`/blog/${post.slug}`} className="block h-full">
         <div className="bg-transparent h-full flex flex-col">
           {/* Thumbnail */}
-          <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden bg-white/5 border border-white/10 mb-4">
+          <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 mb-4 transition-colors duration-300">
             {post.thumbnail ? (
               <Image
                 src={post.thumbnail}
@@ -49,7 +49,7 @@ function BlogPostCard({ post, index }: { post: BlogPostMeta; index: number }) {
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
             ) : (
-              <div className="flex items-center justify-center h-full text-white/20">
+              <div className="flex items-center justify-center h-full text-gray-400 dark:text-white/20">
                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                   <polyline points="14 2 14 8 20 8"></polyline>
@@ -67,24 +67,24 @@ function BlogPostCard({ post, index }: { post: BlogPostMeta; index: number }) {
             {post.tags.length > 0 && (
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                <span className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                <span className="text-xs font-medium text-gray-500 dark:text-white/60 uppercase tracking-wider">
                   {post.tags[0]}
                 </span>
               </div>
             )}
 
             {/* Title */}
-            <h2 className="text-xl font-medium text-white mb-2 group-hover:text-white/90 transition-colors">
+            <h2 className="text-xl font-medium text-gray-900 dark:text-white mb-2 group-hover:text-gray-700 dark:group-hover:text-white/90 transition-colors">
               {post.title}
             </h2>
 
             {/* Excerpt */}
-            <p className="text-sm text-white/50 leading-relaxed line-clamp-2 mb-4">
+            <p className="text-sm text-gray-500 dark:text-white/50 leading-relaxed line-clamp-2 mb-4">
               {post.excerpt}
             </p>
 
             {/* Meta */}
-            <div className="mt-auto pt-2 flex items-center gap-3 text-xs text-white/30">
+            <div className="mt-auto pt-2 flex items-center gap-3 text-xs text-gray-400 dark:text-white/30">
               <time dateTime={post.date}>
                 {formatDate(post.date)}
               </time>
@@ -110,12 +110,12 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
       >
         <div className="flex items-center justify-center gap-2 mb-6">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-          <span className="text-xs font-medium text-white/50 uppercase tracking-[0.2em]">Journal</span>
+          <span className="text-xs font-medium text-gray-500 dark:text-white/50 uppercase tracking-[0.2em]">Journal</span>
         </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
           Blog
         </h1>
-        <p className="text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg text-gray-600 dark:text-white/70 max-w-2xl mx-auto leading-relaxed">
           Thoughts on design, development, and the intersection of art and technology.
         </p>
       </motion.div>

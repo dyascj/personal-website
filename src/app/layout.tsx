@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Providers } from "@/components/Providers";
 import "./globals.css";
 
 const inter = Inter({
@@ -26,12 +27,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${inter.variable} antialiased selection:bg-white selection:text-neutral-900 text-white/90 bg-neutral-950 font-inter`}
+        className={`${inter.variable} antialiased selection:bg-blue-200 selection:text-blue-900 dark:selection:bg-white dark:selection:text-neutral-900 text-gray-900 dark:text-white/90 bg-white dark:bg-neutral-950 font-inter transition-colors duration-300`}
         style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial' }}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

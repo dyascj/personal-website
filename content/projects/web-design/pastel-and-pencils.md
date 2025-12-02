@@ -55,14 +55,14 @@ The brand's aesthetic is soft and approachable, but clarity was paramount. I inc
 The final web app perfectly serves Pastel & Pencils' unique business model. It provides a professional, polished digital presence that empowers their word-of-mouth strategy, turning every conversation into a potential showcase without the overhead of managing an online store.
 
 <div class="my-12 not-prose">
-  <div class="relative p-8 rounded-2xl bg-white/5 border border-white/10 overflow-hidden">
+  <div class="relative p-8 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 overflow-hidden">
     <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500"></div>
-    <svg class="w-6 h-6 text-white/20 mb-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg class="w-6 h-6 text-gray-300 dark:text-white/20 mb-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
       <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
     </svg>
     <blockquote class="relative z-10">
-      <p class="text-xl md:text-2xl font-medium leading-relaxed text-white mb-6">
+      <p class="text-xl md:text-2xl font-medium leading-relaxed text-gray-900 dark:text-white mb-6">
         "This literally doubled my orders received within the first month of launch. It's a vital tool that's the core of my interactions!"
       </p>
       <footer class="flex items-center gap-4">
@@ -70,8 +70,8 @@ The final web app perfectly serves Pastel & Pencils' unique business model. It p
           A
         </div>
         <div>
-          <div class="font-semibold text-white">Amber</div>
-          <div class="text-sm text-white/60">Founder, Pastel & Pencils</div>
+          <div class="font-semibold text-gray-900 dark:text-white">Amber</div>
+          <div class="text-sm text-gray-500 dark:text-white/60">Founder, Pastel & Pencils</div>
         </div>
       </footer>
     </blockquote>
