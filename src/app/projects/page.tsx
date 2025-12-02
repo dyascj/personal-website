@@ -12,7 +12,7 @@ export default function ProjectsPageWrapper() {
   const allProjects = getAllProjects();
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-white">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 text-gray-900 dark:text-white transition-colors duration-300">
       {/* Navigation */}
       <Navigation currentPage="projects" />
       
