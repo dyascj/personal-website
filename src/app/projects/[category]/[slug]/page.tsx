@@ -91,6 +91,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
+  const imageSrc = project.featuredImage || project.thumbnail;
+
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950 text-gray-900 dark:text-white transition-colors duration-300">
       {/* Navigation */}
@@ -196,14 +198,15 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </header>
 
           {/* Featured Image */}
-          {project.featuredImage && (
-            <div className="relative aspect-[4/3] w-full mb-12 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 transition-colors duration-300">
+          {imageSrc && (
+            <div className="relative aspect-video w-full mb-12 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 transition-colors duration-300">
               <Image
-                src={project.featuredImage}
+                src={imageSrc}
                 alt={project.imageAlt || project.title}
                 fill
                 className="object-cover"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent"></div>
             </div>
           )}
 
