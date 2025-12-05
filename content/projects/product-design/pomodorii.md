@@ -14,11 +14,11 @@ link: "https://www.pomodorii.com/"
 tags: ["Productivity", "Sound Design", "Side Project"]
 ---
 
-I just launched my very own pomodoro timer — **Pomodorii! 🎉** Pomodorii captures all the joy and whimsy of early 2000s Nintendo consoles, and is designed + developed entirely by me.
+Say hello to **Pomodorii! 🎉** A Wii-era inspired pomodoro timer that leans into joy and whimsy, designed and built end-to-end by me.
 
-What started as a throwaway side project (mainly an excuse to finally design something with sound) quickly turned into one of my cutest builds ever. I hope Pomodorii brings a little joy (and structure!) to your workflow.
+It began as a small sound-design playground and grew into one of my favorite builds—hopefully adding a bit of structure and charm to your day.
 
-At its core, this was an exploration in **sound design for UI**—and really, that's it. I decided to publish it because I figured it might still provide a little value (and a smile) to people.
+At its heart, Pomodorii is a **sound design in UI** experiment that I decided to ship because it made me smile (and might make you smile, too).
 
 @https://youtu.be/MT4rBeM6uJw
 
