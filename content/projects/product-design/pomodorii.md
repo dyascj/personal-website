@@ -30,20 +30,13 @@ I wanted a timer that feels like booting up a Wii: bright, bubbly, and unpretent
 
 ## Sound-first UI
 
-- Every interaction sounds different—picking up a task, starting the timer, hovering a close button—so the UI feels alive and readable by ear.
-- Gentle transitions instead of harsh alarms to keep flow intact.
-- Subtle UI flourishes (micro-animations, gradient glows) that sync with the sound cues.
-- There’s a Wii-like themesong baked in because this one’s just meant to be fun.
+Every interaction sounds different: picking up a task, starting the timer, hovering a close button. The UI stays readable by ear, with gentle transitions instead of harsh alarms and subtle motions and gradients that move in time with the cues. There is even a Wii-like themesong baked in because this one is meant to be fun.
 
 ## What makes it fun
 
-- **Wii-inspired skin:** Rounded cards, soft glass, and cheerful iconography.
-- **One-look clarity:** Big session timer, minimal chrome, zero distractions.
-- **Little dopamine hits:** Friendly haptics/micro-motions paired with the soundscape.
+Rounded cards, soft glass, and cheerful iconography keep things firmly in Wii territory. The layout stays clean so the timer is always the hero and there is no visual noise. Small haptics and micro-motions line up with the soundscape to give those little dopamine hits without getting in the way.
 
 ## Tech & design notes
 
-- Built with Next.js + React, styled in Tailwind CSS, animated with Framer Motion.
-- Custom Web Audio stack for cues and transitions.
-- Ships as a lightweight SPA so it loads instantly when you just need to start a session.
+Built with Next.js and React, styled in Tailwind CSS, and animated with Framer Motion, Pomodorii leans on a custom Web Audio setup for its cues and transitions. It ships as a lightweight single-page app so it loads quickly when all you want to do is start a session.
 
