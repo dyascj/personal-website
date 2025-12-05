@@ -30,9 +30,10 @@ I wanted a timer that felt like booting up a Wii: bright, bubbly, and unpretenti
 
 ## Sound-first UI
 
-- Every primary state (focus, short break, long break) gets its own sonic signature.
+- Every interaction sounds different—picking up a task, starting the timer, hovering a close button—so the UI feels alive and readable by ear.
 - Gentle transitions instead of harsh alarms to keep flow intact.
 - Subtle UI flourishes (micro-animations, gradient glows) that sync with the sound cues.
+- There’s a Wii-like themesong baked in because this one’s just meant to be fun.
 
 ## What makes it fun
 
